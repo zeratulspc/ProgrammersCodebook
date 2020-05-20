@@ -26,32 +26,66 @@ namespace Codebook
     public class Network
     {
 
+        public struct Line
+        {
+            public int parent;
+            public int child;
+            public Line(int a, int b)
+            {
+                parent = a;
+                child = b;
+            }
+        }
+
         public static int Network_Solution(int n, int[,] computers)
         {
-            int answer = n;
-            int connectedNetwork = 0;
-
-
-            for (int columnIdx = 0;columnIdx < computers.GetLength(1); columnIdx++)
+            int answer = 0;
+            List<Line> lines = new List<Line>();
+            for (int c = 0; c < computers.GetLength(1);c++) //computers[r, c] row, column
             {
-                for (int rowIdx = 0; rowIdx < computers.GetLength(0); rowIdx++)
+                int networkCount = 0;
+                for (int r = 0; r < computers.GetLength(0); r++)
                 {
-                    if (computers[columnIdx, rowIdx] == 1)
+                    if (r != c)
                     {
-                        if (columnIdx != rowIdx)
+                        if (computers[r, c] == 1)
                         {
-                            // 중복검사 
-                            if (computers[columnIdx, rowIdx] == computers[rowIdx, columnIdx])
+                            Console.WriteLine("[Add]row : "+r+" column : "+c);
+                            lines.Add(new Line(c, r));
+                            networkCount++;
+                            if (lines.Contains(new Line(r, c)))
                             {
-                                connectedNetwork++;
+                                int idx = lines.IndexOf(new Line(c, r));
+                                Console.WriteLine("[remove#1]row : " + lines[idx].child + " column : " + lines[idx].parent);
+                                lines.RemoveAt(idx);
                             }
+
+                        }
+                    }
+                }
+
+                if (networkCount == 0)
+                    answer++;
+            }
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                for (int j = 0; j < lines.Count; j++)
+                {
+                    if (lines.Count != 1)
+                    {
+                        if (lines[i].parent == lines[j].parent || lines[i].child == lines[j].child)
+                        {
+                            Console.WriteLine("[remove#2]row : " + lines[i].child + " column : " + lines[i].parent);
+                            lines.RemoveAt(i);
                         }
                     }
                 }
             }
-
-            connectedNetwork /= 2;
-            answer -= connectedNetwork;
+            lines.ForEach(delegate (Line v) {
+                Console.WriteLine("[Result]"+v.parent + "-" + v.child);
+            });
+            answer += lines.Count;
             return answer;
         }
 
