@@ -43,7 +43,7 @@ namespace Codebook
             List<Line> lines = new List<Line>();
             for (int c = 0; c < computers.GetLength(1);c++) //computers[r, c] row, column
             {
-                int networkCount = 0;
+                bool isIndipendent = true;
                 for (int r = 0; r < computers.GetLength(0); r++)
                 {
                     if (r != c)
@@ -52,7 +52,7 @@ namespace Codebook
                         {
                             Console.WriteLine("[Add]row : "+r+" column : "+c);
                             lines.Add(new Line(c, r));
-                            networkCount++;
+                            isIndipendent = false;
                             if (lines.Contains(new Line(r, c)))
                             {
                                 int idx = lines.IndexOf(new Line(c, r));
@@ -60,12 +60,18 @@ namespace Codebook
                                 lines.RemoveAt(idx);
                             }
 
+                            if (isIndipendent)
+                            {
+                                Console.WriteLine("[Indipendent]row : " + r+" column :"+c);
+                            }
                         }
                     }
                 }
 
-                if (networkCount == 0)
+                if (isIndipendent)
+                {
                     answer++;
+                }
             }
 
             for (int i = 0; i < lines.Count; i++)

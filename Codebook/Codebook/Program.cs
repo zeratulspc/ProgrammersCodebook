@@ -26,6 +26,11 @@ namespace Codebook
             //return 1
             Console.WriteLine("answer : " + Network.Network_Solution(4, new int[4, 4] { { 1, 1, 1, 0 }, { 1, 1, 0, 0 }, { 1, 0, 1, 1 }, { 0, 0, 1, 1 } }));
 
+            //return 1
+            Console.WriteLine("answer : " + Network.Network_Solution(4, new int[4, 4] { { 1, 1, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 } }));
+
+            //return 1
+            Console.WriteLine("answer : " + Network.Network_Solution(4, new int[4, 4] { { 1, 0, 0, 1 }, { 0, 1, 1, 1 }, { 0, 1, 1, 0 }, { 1, 1, 0, 1 } }));
         }
     }
 }
