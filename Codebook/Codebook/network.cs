@@ -23,45 +23,35 @@ using System.Threading.Tasks;
 
 namespace Codebook
 {
-    class Network
+    public class Network
     {
-        static void Main(string[] args)
-        {
-            //return 2;
-            Console.WriteLine(Solution(3, new int[3, 3] { { 1, 1, 0 }, { 1, 1, 0 }, { 0, 0, 1 } }));
 
-            //return 1;
-            Console.WriteLine(Solution(3, new int[3, 3] { { 1, 1, 0 }, { 1, 1, 1 }, { 0, 1, 1 } }));
-        }
-
-        struct Connect
+        public static int Network_Solution(int n, int[,] computers)
         {
-            public int parent;
-            public int child;
-            public Connect(int a, int b)
-            {
-                parent = a;
-                child = b;
-            }
-        }
+            int answer = n;
+            int connectedNetwork = 0;
 
-        static int Solution(int n, int[,] computers)
-        {
-            int answer = 0;
-            List<Connect> connected = new List<Connect>();
 
             for (int columnIdx = 0;columnIdx < computers.GetLength(1); columnIdx++)
             {
                 for (int rowIdx = 0; rowIdx < computers.GetLength(0); rowIdx++)
                 {
-                    if (columnIdx != rowIdx)
+                    if (computers[columnIdx, rowIdx] == 1)
                     {
-                        // 중복검사 
-                        
-                        connected.Add(new Connect(columnIdx, rowIdx));
+                        if (columnIdx != rowIdx)
+                        {
+                            // 중복검사 
+                            if (computers[columnIdx, rowIdx] == computers[rowIdx, columnIdx])
+                            {
+                                connectedNetwork++;
+                            }
+                        }
                     }
                 }
             }
+
+            connectedNetwork /= 2;
+            answer -= connectedNetwork;
             return answer;
         }
 
