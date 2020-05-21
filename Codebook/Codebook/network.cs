@@ -80,11 +80,14 @@ namespace Codebook
                 {
                     if (lines.Count != 1)
                     {
-                        if (lines[i].parent == lines[j].parent || lines[i].child == lines[j].child)
-                        {
-                            Console.WriteLine("[remove#2]row : " + lines[i].child + " column : " + lines[i].parent);
-                            lines.RemoveAt(i);
-                        }
+                        if (i != j)
+                            if (lines[i].parent == lines[j].parent || lines[i].child == lines[j].child 
+                                || lines[i].parent == lines[j].child || lines[i].child == lines[j].parent)
+                            {
+                                Console.WriteLine("[비교]" + i + "-" + j);
+                                Console.WriteLine("[remove#2]" + lines[j].parent + "-" + lines[j].child);
+                                lines.RemoveAt(j);
+                            }
                     }
                 }
             }
