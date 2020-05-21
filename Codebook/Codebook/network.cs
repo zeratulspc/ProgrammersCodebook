@@ -42,7 +42,7 @@ namespace Codebook
             int answer = 0;
             List<Line> lines = new List<Line>();
             for (int c = 0; c < computers.GetLength(1);c++) //computers[r, c] row, column
-            {
+            { //TODO : 3개 이상 연결된 네트워크도 고려할 것
                 bool isIndipendent = true;
                 for (int r = 0; r < computers.GetLength(0); r++)
                 {
