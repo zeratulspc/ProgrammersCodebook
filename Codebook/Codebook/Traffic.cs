@@ -39,10 +39,8 @@ namespace Codebook
                 this.endTime += h * 3600;
                 this.endTime += m * 60;
                 this.endTime += s;
-                this.endTime = Math.Round(this.endTime * 10000) / 10000;
 
                 this.startTime = endTime - l + 0.001;
-                this.startTime = Math.Round(this.startTime * 10000) / 10000;
             }
         }
 
@@ -60,8 +58,13 @@ namespace Codebook
                     int.Parse(parsed_t[0]),
                     int.Parse(parsed_t[1]),
                     double.Parse(parsed_t[2]),
-                    Math.Round(double.Parse(parsed_l) * 10000) / 10000)
+                    double.Parse(parsed_l))
                 );
+            }
+
+            foreach (var i in times)
+            {
+                Console.WriteLine(i.startTime+" "+i.endTime);
             }
             
             int[] countPoint = new int[times.Count];
@@ -75,14 +78,17 @@ namespace Codebook
                     if (times[j].startTime >= s && times[j].startTime < e)
                     {
                         countPoint[i]++;
+                        //Console.WriteLine("[i:" + i + "][j:" + j + "]p:" + countPoint[i] + " s:" + s + " e:" + e);
                     }
                     else if (times[j].endTime >= s && times[j].endTime < e)
                     {
                         countPoint[i]++;
+                        //Console.WriteLine("[i:" + i + "][j:" + j + "]p:" + countPoint[i] + " s:" + s + " e:" + e);
                     }
                     else if (times[j].startTime <= s && times[j].endTime >= e)
                     {
                         countPoint[i]++;
+                        //Console.WriteLine("[i:" + i + "][j:" + j + "]p:" + countPoint[i] + " s:" + s + " e:" + e);
                     }
                 }
             }
@@ -106,14 +112,17 @@ namespace Codebook
                     if (times[j].startTime >= s && times[j].startTime < e)
                     {
                         countPoint[i]++;
+                        //Console.WriteLine("[i:" + i + "][j:" + j + "]p:" + countPoint[i] + " s:" + s + " e:" + e);
                     }
                     else if (times[j].endTime >= s && times[j].endTime < e)
                     {
                         countPoint[i]++;
+                        //Console.WriteLine("[i:" + i + "][j:" + j + "]p:" + countPoint[i] + " s:" + s + " e:" + e);
                     }
                     else if (times[j].startTime <= s && times[j].endTime >= e)
                     {
                         countPoint[i]++;
+                        //Console.WriteLine("[i:"+i+"][j:"+j+"]p:"+countPoint[i]+" s:"+s+" e:"+e);
                     }
                 }
             }
@@ -131,111 +140,3 @@ namespace Codebook
         }
     }
 }
-
-/* 콘솔 없는 버전
- 
-class Solution {
-    public struct Times
-        {
-            public double startTime;
-            public double endTime;
-
-            public Times(int h, int m, double s, double l)
-            {
-                this.endTime = 0;
-                this.endTime += h * 3600;
-                this.endTime += m * 60;
-                this.endTime += s;
-                this.endTime = Math.Round(this.endTime * 10000) / 10000;
-
-                this.startTime = endTime - l;
-                this.startTime = Math.Round(this.startTime * 10000) / 10000;
-            }
-        }
-
-        public int Solution(string[] lines)
-        {
-            List<Times> times = new List<Times>();
-            int answer = 0;
-            foreach (var i in lines)
-            {
-                string[] parsed_t = new string[3];
-                string parsed_l = i.Split(' ')[2].Split('s')[0];
-                parsed_t = i.Split(' ')[1].Split(':');
-                times.Add(new Times(
-                    int.Parse(parsed_t[0]),
-                    int.Parse(parsed_t[1]),
-                    double.Parse(parsed_t[2]),
-                    Math.Round(double.Parse(parsed_l) * 10000) / 10000)
-                );
-            }
-            
-            int[] countPoint = new int[times.Count];
-            for (int i = 0; i < times.Count; i++)
-            {
-                countPoint[i] = 0;
-                double s = times[i].startTime;
-                double e = s + 1;
-                for (int j = 0; j < times.Count; j++)
-                {
-                    if (times[j].startTime >= s && times[j].startTime < e)
-                    {
-                        countPoint[i]++;
-                    }
-                    else if (times[j].endTime >= s && times[j].endTime < e)
-                    {
-                        countPoint[i]++;
-                    }
-                    else if (times[j].startTime <= s && times[j].endTime >= e)
-                    {
-                        countPoint[i]++;
-                    }
-                    
-                }
-            }
-
-            foreach (var i in countPoint) 
-            {
-                if (i > answer)
-                {
-                    answer = i;
-                }
-            }
-
-            for (int i = 0; i < times.Count; i++)
-            {
-                countPoint[i] = 0;
-                double s = times[i].endTime;
-                double e = s + 1;
-
-                for (int j = 0; j < times.Count; j++)
-                {
-                    if (times[j].startTime >= s && times[j].startTime < e)
-                    {
-                        countPoint[i]++;
-                    }
-                    else if (times[j].endTime >= s && times[j].endTime < e)
-                    {
-                        countPoint[i]++;
-                    }
-                    else if (times[j].startTime <= s && times[j].endTime >= e)
-                    {
-                        countPoint[i]++;
-                    }
-                }
-            }
-
-            foreach (var i in countPoint)
-            {
-                if (i > answer)
-                {
-                    answer = i;
-                }
-            }
-
-
-            return answer;
-        }
-}
-
- */
