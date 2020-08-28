@@ -8,46 +8,42 @@ namespace Codebook
 {
     class TrainingUniform
     {
-        public int solution(int pN, int[] pLost, int[] pReserve)
+        public int solution(int n, int[] lost, int[] reserve)
         {
-            int answer = 0;
-            List<int> lost = new List<int>(pLost);
-            List<int> reserve = new List<int>(pReserve);
+            int answer = n - lost.Length;
 
-            for (int i = 0; i<pLost.Length;i++)
+            Array.Sort(lost);
+
+            // lost - reserve 중복 검사
+            for (int i = 0; i < lost.Length; i++)
             {
-                if (reserve.Contains(pLost[i]))
+                for (int j = 0; j < reserve.Length; j++)
                 {
-                    reserve.Remove(lost[i]);
-                    lost.RemoveAt(i);
-                }
-                else if (reserve.Contains(pLost[i] - 1))
-                {
-                    reserve.Remove(lost[i] - 1);
-                    lost.RemoveAt(i);
-                }
-                else if (reserve.Contains(pLost[i] + 1))
-                {
-                    reserve.Remove(lost[i] + 1);
-                    lost.RemoveAt(i);
+                    if (lost[i] == reserve[j])
+                    {
+                        reserve[j] = 50;
+                        break;
+                    }
                 }
             }
 
-            Console.WriteLine("------도둑");
-            foreach (var i in lost)
+            // 메인 테스트
+            for (int i=0;i<lost.Length;i++)
             {
-                Console.WriteLine(i.ToString());
+                for (int j=0;j<reserve.Length;j++)
+                {
+                    if (reserve[j] != 50)
+                    {
+                        if (lost[i] == reserve[j] + 1 || lost[i] == reserve[j] - 1)
+                        {
+                            reserve[j] = 50;
+                            answer++;
+                            break;
+                        }
+                    }
+                }
             }
-
-            Console.WriteLine("------예비");
-
-            foreach (var i in reserve)
-            {
-                Console.WriteLine(i.ToString());
-            }
-            Console.WriteLine("------결과,");
-            answer = pN - lost.Count;
-            return answer;
+                return answer;
         }
     }
 }
