@@ -11,17 +11,17 @@ namespace Codebook
     {
         static void Main(string[] args)
         {
-            //5
+/*            //5
             Console.WriteLine(new TrainingUniform().solution(5, new int[] { 2, 4 }, new int[] { 1, 3, 5 }));
             //4
             Console.WriteLine(new TrainingUniform().solution(5, new int[] { 2, 4 }, new int[] { 3 }));
             //2
             Console.WriteLine(new TrainingUniform().solution(3, new int[] { 3 }, new int[] { 1 }));
             //1
-            Console.WriteLine(new TrainingUniform().solution(2, new int[] { 1, 2 }, new int[] { 1, 3 }));
+            Console.WriteLine(new TrainingUniform().solution(2, new int[] { 1, 2 }, new int[] { 1, 3 }));*/
 
 
-            Console.WriteLine(new TrainingUniform().solution(24, new int[] { 12, 13, 16, 17, 19, 20, 21, 22 }, new int[] { 1, 22, 16, 18, 9, 10 }));
+            Console.WriteLine(new TrainingUniform().solution(5, new int[] {1,2}, new int[] {2,3})); // 4
 
             //solution(5, { 2,4 }, { 1,3,5 });
             //solution(5, { 2,4 }, { 3 });

@@ -12,8 +12,6 @@ namespace Codebook
         {
             int answer = n - lost.Length;
 
-            Array.Sort(lost);
-
             // lost - reserve 중복 검사
             for (int i = 0; i < lost.Length; i++)
             {
@@ -21,16 +19,18 @@ namespace Codebook
                 {
                     if (lost[i] == reserve[j])
                     {
+                        lost[i] = 50;
                         reserve[j] = 50;
+                        answer++;
                         break;
                     }
                 }
             }
 
             // 메인 테스트
-            for (int i=0;i<lost.Length;i++)
+            for (int i = 0; i < lost.Length; i++)
             {
-                for (int j=0;j<reserve.Length;j++)
+                for (int j = 0; j < reserve.Length; j++)
                 {
                     if (reserve[j] != 50)
                     {
@@ -43,7 +43,8 @@ namespace Codebook
                     }
                 }
             }
-                return answer;
+
+            return answer;
         }
     }
 }
