@@ -1,0 +1,71 @@
+﻿//뉴스 클러스터링 (자바)
+
+
+package programmers_kakao_test;
+import java.util.*;
+
+
+public class NewsClustering {
+	public int solution(String str1, String str2) {
+        int answer = 0;
+        //대문자로 변환
+        //[^A-Za-z]
+        str1 = str1.toUpperCase();
+        str2 = str2.toUpperCase();
+
+        
+        
+        ArrayList<String> strArr1 = new ArrayList<String>();
+        ArrayList<String> strArr2 = new ArrayList<String>();
+        
+        //문자열 2개씩 나누기 (숫자 및 특수문자는 버린다)
+        //System.out.println("------str1------");
+        for(int i=0;i<str1.length()-1;i++) {
+        	char c1 = str1.charAt(i);
+        	char c2 = str1.charAt(i+1);
+        	String s = ""+c1+c2;
+        			
+        	if((c1 >= 'A' && c1 <= 'Z' || c1 >= 'a' && c1 <= 'z') &&(c2 >= 'A' && c2 <= 'Z' || c2 >= 'a' && c2 <= 'z')) {
+        		strArr1.add(s);
+        		//System.out.println(s);
+        	}
+        }
+        //System.out.println("------str2------");
+        for(int i=0;i<str2.length()-1;i++) {
+        	char c1 = str2.charAt(i);
+        	char c2 = str2.charAt(i+1);
+        	String s = ""+c1+c2;
+        			
+        	if((c1 >= 'A' && c1 <= 'Z' || c1 >= 'a' && c1 <= 'z') &&(c2 >= 'A' && c2 <= 'Z' || c2 >= 'a' && c2 <= 'z')) {
+        		strArr2.add(s);
+        		//System.out.println(s);
+        	}
+        }
+        
+        Collections.sort(strArr1);
+        Collections.sort(strArr2);
+        
+        
+        int intersection = 0; //교집합 수
+        int sumOfSets = 0; //합집합 수
+
+        for(String s : strArr1){
+            if(strArr2.remove(s)){
+              intersection++;
+            }
+            sumOfSets++;
+        }
+        
+        for(String s : strArr2){
+            sumOfSets++;
+        }
+
+        //System.out.println(sumOfSets);
+        answer = (int)(((double)intersection / (double)sumOfSets) * 65536);
+        //System.out.println(answer);
+        if(sumOfSets == 0) {
+        	answer = 65536;
+        }
+        return answer;
+    }
+}

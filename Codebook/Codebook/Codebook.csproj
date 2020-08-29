@@ -47,12 +47,16 @@
     <Compile Include="Network.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Traffic%28JAVA%29.txt" />
     <Compile Include="Traffic.cs" />
     <Compile Include="TrainingUniform.cs" />
     <Compile Include="WordTransition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NewsClustering%28JAVA%29.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

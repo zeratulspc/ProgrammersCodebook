@@ -1,0 +1,106 @@
+﻿package programmers_kakao_test;
+import java.util.ArrayList;
+
+class Times
+{
+    public double startTime;
+    public double endTime;
+
+    public Times(int h, int m, double s, double l)
+    {
+        this.endTime = 0;
+        this.endTime += h * 3600;
+        this.endTime += m * 60;
+        this.endTime += s;
+
+        this.startTime = endTime - l + 0.001;
+    }
+}
+
+class Traffic {
+
+      public int solution(String[] lines)
+   {
+       ArrayList<Times> times = new ArrayList<Times>();
+       int answer = 0;
+
+       for(String i : lines)
+       {
+      	 String[] parsed_t = new String[3];
+      	 String parsed_l = i.split(" ")[2].split("s")[0];
+           parsed_t = i.split(" ")[1].split(":");
+           times.add(new Times(
+               Integer.parseInt(parsed_t[0]),
+               Integer.parseInt(parsed_t[1]),
+               Double.parseDouble(parsed_t[2]),
+               Double.parseDouble(parsed_l))
+           );
+       }
+       
+       
+       int[] countPoint = new int[times.size()];
+       for (int i = 0; i < times.size(); i++)
+       {
+           countPoint[i] = 0;
+           double s = times.get(i).startTime;
+           double e = s + 1;
+           for (int j = 0; j < times.size(); j++)
+           {
+               if (times.get(j).startTime >= s && times.get(j).startTime < e)
+               {
+                   countPoint[i]++;
+               }
+               else if (times.get(j).endTime >= s && times.get(j).endTime < e)
+               {
+                   countPoint[i]++;
+               }
+               else if (times.get(j).startTime <= s && times.get(j).endTime >= e)
+               {
+                   countPoint[i]++;
+               }
+           }
+       }
+
+       for (int i : countPoint) 
+       {
+           if (i > answer)
+           {
+               answer = i;
+           }
+       }
+
+       for (int i = 0; i < times.size(); i++)
+       {
+           countPoint[i] = 0;
+           double s = times.get(i).endTime;
+           double e = s + 1;
+
+           for (int j = 0; j < times.size(); j++)
+           {
+          	 if (times.get(j).startTime >= s && times.get(j).startTime < e)
+               {
+                   countPoint[i]++;
+               }
+               else if (times.get(j).endTime >= s && times.get(j).endTime < e)
+               {
+                   countPoint[i]++;
+               }
+               else if (times.get(j).startTime <= s && times.get(j).endTime >= e)
+               {
+                   countPoint[i]++;
+               }
+           }
+       }
+
+       for (int i : countPoint) 
+       {
+           if (i > answer)
+           {
+               answer = i;
+           }
+       }
+
+
+       return answer;
+   }
+}
