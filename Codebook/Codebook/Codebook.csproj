@@ -47,6 +47,7 @@
     <Compile Include="Network.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="SeceretMap%28JAVA%29.txt" />
     <Content Include="Traffic%28JAVA%29.txt" />
     <Compile Include="Traffic.cs" />
     <Compile Include="TrainingUniform.cs" />
