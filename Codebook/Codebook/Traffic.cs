@@ -134,8 +134,6 @@ namespace Codebook
                     answer = i;
                 }
             }
-
-
             return answer;
         }
     }
