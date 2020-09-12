@@ -1,0 +1,22 @@
+﻿package programmers_kakao;
+
+public class DartGame {
+	public int solution(String dartResult) {
+        int answer = 0;
+        //1S2D*3T
+        for (int i=dartResult.length()-1;i>=0;i--) {
+        	char c = dartResult.charAt(i);
+        	if(c == 'S') {
+        		answer += (int)(dartResult.charAt(i-1));
+        	} else if (c == 'D') {
+        		answer += (int)(dartResult.charAt(i-1)) * (int)(dartResult.charAt(i-1));
+        	} else if (c == 'T') {
+        		answer += (int)(dartResult.charAt(i-1)) * (int)(dartResult.charAt(i-1)) * (int)(dartResult.charAt(i-1));
+        	} else if (c == '*') { 
+        	} else if (c == '#') {
+        		
+        	}
+        }
+        return answer;
+    }
+}
