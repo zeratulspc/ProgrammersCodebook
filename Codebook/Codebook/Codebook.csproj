@@ -48,6 +48,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="DartGame.txt" />
+    <Content Include="kakao_2021_pr3.txt" />
     <Content Include="SeceretMap%28JAVA%29.txt" />
     <Content Include="Traffic%28JAVA%29.txt" />
     <Compile Include="Traffic.cs" />
