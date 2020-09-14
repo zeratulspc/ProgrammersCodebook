@@ -11,17 +11,17 @@ namespace Codebook
     {
         static void Main(string[] args)
         {
-/*            //5
-            Console.WriteLine(new TrainingUniform().solution(5, new int[] { 2, 4 }, new int[] { 1, 3, 5 }));
-            //4
-            Console.WriteLine(new TrainingUniform().solution(5, new int[] { 2, 4 }, new int[] { 3 }));
-            //2
-            Console.WriteLine(new TrainingUniform().solution(3, new int[] { 3 }, new int[] { 1 }));
-            //1
-            Console.WriteLine(new TrainingUniform().solution(2, new int[] { 1, 2 }, new int[] { 1, 3 }));*/
+            /*            //5
+                        Console.WriteLine(new TrainingUniform().solution(5, new int[] { 2, 4 }, new int[] { 1, 3, 5 }));
+                        //4
+                        Console.WriteLine(new TrainingUniform().solution(5, new int[] { 2, 4 }, new int[] { 3 }));
+                        //2
+                        Console.WriteLine(new TrainingUniform().solution(3, new int[] { 3 }, new int[] { 1 }));
+                        //1
+                        Console.WriteLine(new TrainingUniform().solution(2, new int[] { 1, 2 }, new int[] { 1, 3 }));*/
 
 
-            Console.WriteLine(new TrainingUniform().solution(5, new int[] {1,2}, new int[] {2,3})); // 4
+            //Console.WriteLine(new TrainingUniform().solution(5, new int[] {1,2}, new int[] {2,3})); // 4
 
             //solution(5, { 2,4 }, { 1,3,5 });
             //solution(5, { 2,4 }, { 3 });
@@ -35,6 +35,8 @@ namespace Codebook
             //solution(7, { 2,3,4 }, { 1,2,3,6 });
             //solution(5, { 2,3,4 }, { 3,4,5 });
             //solution(10, { 3,9,10 }, { 3,8,9 });
+
+            new ZeroToTenThousands().MakeFile();
         }
     }
 }
